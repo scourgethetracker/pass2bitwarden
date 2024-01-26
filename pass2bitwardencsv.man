@@ -1,0 +1,89 @@
+.TH PASSFORMAT-TO-CSV 1 "2024-01-25" "version 1.0" "Pass to Bitwarden CSV Converter Manual"
+.SH NAME
+pass-to-bitwarden-csv \- Convert Pass format data to Bitwarden CSV format.
+
+.SH SYNOPSIS
+.B passformat-to-csv
+.RI [ options ]...
+
+.SH DESCRIPTION
+.PP
+The \fBpass-to-bitwarden-csv\fR script is used to convert password data in a specific format (referred to as "passformat") into a Bitwarden CSV file. It is especially designed to work with password entries retrieved using the \fBpass\fR command-line utility. The script can append data to an existing CSV file, ensuring the format consistency and avoiding header duplication.
+
+.SH OPTIONS
+.PP
+.TP
+.B \-\-pass_entry
+The pass entry to retrieve data from. This is a required argument.
+.TP
+.B \-\-folder
+Folder field value for the CSV. This is an optional argument.
+.TP
+.B \-\-favorite
+Favorite field value for the CSV. This is an optional argument.
+.TP
+.B \-\-type
+Type field value for the CSV. This is an optional argument.
+.TP
+.B \-\-name
+Name field value for the CSV. This is a required argument.
+.TP
+.B \-\-notes
+Notes field value for the CSV. This is an optional argument.
+.TP
+.B \-\-fields
+Fields field value for the CSV. This is an optional argument.
+.TP
+.B \-\-reprompt
+Reprompt field value for the CSV. This is an optional argument.
+
+.SH EXAMPLES
+.PP
+Convert a pass entry named "my_pass_entry" with the name "Example Site":
+.RS
+.nf
+\fB./script.py \-\-pass_entry "my_pass_entry" \-\-name "Example Site" \-\-folder "Personal" \-\-type "Login"\fR
+.fi
+.RE
+.PP
+Convert another pass entry named "another_pass_entry" with the name "Another Site":
+.RS
+.nf
+\fB./script.py \-\-pass_entry "another_pass_entry" \-\-name "Another Site" \-\-favorite "Yes" \-\-notes "My notes"\fR
+.fi
+.RE
+
+.SH INPUT FORMAT
+.PP
+The input data in "passformat" should contain:
+.RS
+.nf
+Password
+Username: someusername
+URL: https://someurl.com
+otpauth://...
+.fi
+.RE
+.PP
+The first line contains the password, followed by other fields like username, URL, and otpauth, each prefixed with their field name and a colon.
+
+.SH OUTPUT FORMAT
+.PP
+The output is a CSV file with columns for folder, favorite, type, name, notes, fields, reprompt, login_uri, login_username, login_password, and login_totp.
+
+.SH "SEE ALSO"
+.PP
+\fBpass(1)\fR, \fBcsv(5)\fR
+
+.SH AUTHOR
+.PP
+This manual page was written by ScourgeTheTracker.
+
+.SH "REPORTING BUGS"
+.PP
+Report bugs to https://github.com/scourgethetracker/pass2bitwarden/issues.
+
+.SH COPYRIGHT
+.PP
+Copyleft © 2024 by ScourgeTheTracker. All rights reserved.
+
